@@ -24,6 +24,7 @@ const Sidebar = () => {
       location.pathname === "/profile"
     )
   }
+  const [showPurchaseOption, setPurchaseOption] = useState(false)
   const isProfileRoute = () => {
     return (
       location.pathname === '/profile' ||
@@ -103,10 +104,25 @@ const Sidebar = () => {
           </div>
         )}
 
-        <NavLink to={'/pruchases'} style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
-          <div className="p-1 mb-1 text-bold  flex items-center hover:cursor-pointer hover:bg-[#a2d]"> <TrendDown size={20} weight="fill" className="mr-2" /><h2 className="ml-2">Purchases</h2></div>
-        </NavLink>
+
+        <div className="p-1 mb-1 text-bold  flex items-center hover:cursor-pointer hover:bg-[#a2d]" onClick={() => { setPurchaseOption(!showPurchaseOption) }}> <TrendDown size={20} weight="fill" className="mr-2" /><h2 className="ml-2">Purchases</h2></div>
+
+        {showPurchaseOption && (
+          <div className="ml-8">
+            <NavLink to="/invoices" style={ActiveStyle}>
+              <div className="p-1 mb-1 text-bold flex items-center hover:cursor-pointer hover:bg-[#a2d]">Purchase</div>
+            </NavLink>
+            <NavLink to="/quotations" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+              <div className="p-1 mb-1 text-bold flex items-center hover:cursor-pointer hover:bg-[#a2d]">Purchase Return</div>
+            </NavLink>
+            <NavLink to="/sale-returns" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+              <div className="p-1 mb-1 text-bold flex items-center hover:cursor-pointer hover:bg-[#a2d]">Purchase Order</div>
+            </NavLink>
+            <NavLink to="/payments-in" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+              <div className="p-1 mb-1 text-bold flex items-center hover:cursor-pointer hover:bg-[#a2d]">Payment Out</div>
+            </NavLink>
+          </div>
+        )}
 
         <NavLink to={'/expense'} style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
